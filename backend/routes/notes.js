@@ -4,7 +4,6 @@ const fetchuser = require("../middleware/fetchuser")
 const Notes = require('../models/Notes')
 const { body, validationResult } = require('express-validator')
 
-
 //Route 1: Get all the notes
 router.get('/fetchallnotes', fetchuser, async (req, res) =>{
     const notes = await Notes.find({user: req.user.id})
@@ -38,7 +37,7 @@ router.post('/addnote', fetchuser, [
 
 })
 
-
+//Route 3: Update note using put
 router.put('/updatenote/:id', fetchuser, 
 // [
 //     body('title', 'Title length should be atleast 3').isLength({min:3}),
@@ -61,15 +60,36 @@ async (req, res) =>{
 
 
         // find the node to be updated and update it.
-        var note = Notes.findOne({_id: req.params.id, user: req.user.id})
+        var note = await Notes.findOne({_id: req.params.id, user: req.user.id})
         if(!note){
-            res.status('404').send('No such note found')
+            res.status(404).send('No such note found')
             return
         }
         
 
         note = await Notes.findByIdAndUpdate(req.params.id, {$set: newNote}, {new:true})
         res.json(note)
+
+    } catch (err) {
+        res.status(500).send("Internal server error")
+        console.log(err)
+    }
+})
+
+//Route 4: delete note using delete
+router.delete('/deletenote/:id', fetchuser,
+async (req, res) =>{
+    try{
+        // create new note object
+        // find the node to be deleted and delete it.
+        var note = await Notes.findOne({_id: req.params.id, user: req.user.id})
+        if(!note){
+            res.status(404).send('No such note found')
+            return
+        }
+
+        note = await Notes.findByIdAndDelete(req.params.id)
+        res.json({"Success" : "Note has been deleted", note:note})
 
     } catch (err) {
         res.status(500).send("Internal server error")
