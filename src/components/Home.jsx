@@ -2,9 +2,7 @@ import React from 'react'
 
 const home = () => {
   return (
-    <div>hs
-      sggsg
-      sgsgome</div>
+    <div>home</div>
   )
 }
 

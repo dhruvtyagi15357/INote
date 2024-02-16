@@ -3,15 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./components/About";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
-
-
-
+import NoteState from "./context/notes/notestate";
+import './App.css';
 function App() {
   return (
+    <NoteState>
     <BrowserRouter>
+        <Navbar className='navbar1'/>
       <div className="mx-2">
-        <Navbar/>
-        <h1 className="mx-2 ">INote</h1>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/home" element={<Home/>} />
@@ -19,6 +18,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </NoteState> 
   );
 }
 
