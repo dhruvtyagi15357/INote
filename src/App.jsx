@@ -5,11 +5,16 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import NoteState from "./context/notes/notestate";
 import "./App.css";
+import Alert from "./components/Alert";
 function App() {
   return (
     <NoteState>
       <BrowserRouter>
         <Navbar className="navbar1" />
+        <Alert alert={{
+      msg: "hello",
+      type: "success"}
+    }/>
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
