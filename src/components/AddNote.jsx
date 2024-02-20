@@ -20,7 +20,7 @@ const AddNote = () => {
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        addNote(note)
+        addNote(note.title, note.description, note.tag)
     }
 
   return (
