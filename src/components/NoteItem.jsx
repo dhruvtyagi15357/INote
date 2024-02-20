@@ -14,7 +14,7 @@ const NoteItem = (props) => {
   }
 
   const handleEdit = (id) => {
-     editNote(id)
+     editNote(id, "test title", "test desc")
   };
   return (
     <div className="card col-md-3 mx-2 my-2">
