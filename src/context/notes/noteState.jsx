@@ -44,10 +44,8 @@ const NoteState = (props) => {
     });
 
     const responseJson = await response.json()
-    console.log(responseJson)
     
     // client demo
-    console.log("adding a new note: ");
     const _note = {
       title: title,
       description: description,
@@ -57,9 +55,22 @@ const NoteState = (props) => {
   };
 
   //delete a note
-  const deleteNote = (id) => {
-    console.log("Delete context function called");
-    console.log(id);
+  const deleteNote = async (id) => {
+    // api call
+    const url = `${host}/api/notes/deletenote/${id}`;
+
+    const response = await fetch(url, {
+      method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVjMGI3OTA2MmY3MjRkZDU0M2RmYmU2In0sImlhdCI6MTcwNzI1NTQ5N30.TESkCDMymSW-e5pYv-g9H5E26wtSyApixnQi6bgtV7M",
+      },
+    });
+
+    const responseJson = await response.json()
+
+    //client
     setNotes(
       notes.filter((note) => {
         return note._id !== id;
@@ -71,9 +82,8 @@ const NoteState = (props) => {
   const editNote = async (id, title, description, tag) => {
     //api call
     const url = `${host}/api/notes/updatenote/${id}`;
-
     const response = await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      method: "PUT", // *GET, POST, PUT, DELETE, etc.
 
       headers: {
         "Content-Type": "application/json",
