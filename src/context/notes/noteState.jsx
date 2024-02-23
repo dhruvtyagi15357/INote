@@ -46,11 +46,7 @@ const NoteState = (props) => {
     const responseJson = await response.json()
     
     // client demo
-    const _note = {
-      title: title,
-      description: description,
-      tag: tag,
-    };
+    const _note = responseJson
     setNotes(notes.concat(_note));
   };
 

@@ -27,11 +27,11 @@ const Notes = () => {
     setNote({ ...note, [e.target.name]: e.target.value });
     // console.log(note)
   };
+
   const handleSubmit = (e) => {
-    e.preventDefault()
-    editNote(note.id, note.etitle, note.edescription, note.etag
-      )
-    refClose.current.click()
+    e.preventDefault();
+    editNote(note.id, note.etitle, note.edescription, note.etag);
+    refClose.current.click();
   };
 
   const ref = useRef(null);
@@ -139,28 +139,30 @@ const Notes = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="btn btn-primary">
+                className="btn btn-primary"
+                disabled={note.etitle.length < 3 || note.edescription.length < 5}>
                 Update note
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div className="my-4">
+      <div className="my-4 row">
         <h2>Your notes</h2>
-        <div className="row">
-          {notes &&
-            notes.map((note, index) => {
-              return (
-                <NoteItem
-                  key={note._id ? note._id : index}
-                  k={note._id ? note._id : index}
-                  note={note}
-                  updateNote={updateNote}
-                />
-              );
-            })}
+        <div className="container mx-2 blockquote-footer">
+          {notes.length === 0 && "No notes to display"}
         </div>
+        {notes &&
+          notes.map((note, index) => {
+            return (
+              <NoteItem
+                key={note._id ? note._id : index}
+                k={note._id ? note._id : index}
+                note={note}
+                updateNote={updateNote}
+              />
+            );
+          })}
       </div>
     </>
   );
