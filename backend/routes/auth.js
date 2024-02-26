@@ -15,15 +15,18 @@ router.post('/register', [
     body('name').isLength({min:2, max:50}),
     body('password').isLength({min:5})
 ],async (req, res) =>{
+
+    let success = false;
+
     const error = validationResult(req);
     if (!error.isEmpty()){
-        return res.status(400).json({error:error.array()})
+        return res.status(400).json({success, error:error.array()})
     }
 
     try{
         let user = await User.findOne({ email: req.body.email });
         if (user) {
-            return res.status(400).json({ error: "Sorry a user with this email already exists" })
+            return res.status(400).json({success, error: "Sorry a user with this email already exists" })
         }
         
         const salt = await bcrypt.genSalt()
@@ -43,9 +46,8 @@ router.post('/register', [
         
         const authToken = jwt.sign(data, JWT_SECRET)
         console.log(authToken)
-        res.json({authToken})
-
-
+        success = true
+        res.json({success, authToken})
 
 
     } catch (err){
@@ -61,16 +63,16 @@ router.post('/login', [
 ],async (req, res) =>{
     const email = req.body.email
     const password = req.body.password
-
+    let success = false;
 
     try{
         let user = await User.findOne({email})
         if(!user){
-            return res.status(400).json({error: 'sorry, user does not exist'})
+            return res.status(400).json({success: success, error: 'sorry, user does not exist'})
         }
         const passwordCmp = await bcrypt.compare(password, user.password)
         if(!passwordCmp){
-            return res.status(400).json({error: 'sorry, wrong password'})
+            return res.status(400).json({success: success, error: 'sorry, wrong password'})
         }
 
         const data = {
@@ -80,7 +82,8 @@ router.post('/login', [
         }
         
         const authToken = jwt.sign(data, JWT_SECRET)
-        res.json({authToken})
+        success = true
+        res.json({success: success, authToken})
 
     } catch (err) {
         res.status(500).send(err.message)

@@ -52,7 +52,8 @@ const Notes = () => {
         data-bs-target="#exampleModal">
         Launch demo modal
       </button>
-
+      
+      
       <div
         className="modal fade"
         id="exampleModal"
@@ -147,6 +148,7 @@ const Notes = () => {
           </div>
         </div>
       </div>
+
       <div className="my-4 row">
         <h2>Your notes</h2>
         <div className="container mx-2 blockquote-footer">

@@ -6,8 +6,13 @@ const { body, validationResult } = require('express-validator')
 
 //Route 1: Get all the notes
 router.get('/fetchallnotes', fetchuser, async (req, res) =>{
+    try{
     const notes = await Notes.find({user: req.user.id})
     res.json(notes)
+    } catch (err) {
+        res.status(500).send("Internal server error")
+        console.log(err)
+    }
 })
 
 //Route 2: Add a new note using post
