@@ -13,7 +13,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          INote
+          NoteKeeper
         </Link>
         <button
           className="navbar-toggler"
@@ -60,18 +60,26 @@ const Navbar = () => {
             </li> */}
           </ul>
           <div className="d-flex">
-          {!localStorage.getItem("token") ? 
-            <div>
-            <Link className="btn btn-primary mx-2" to={`/login`} role="button">
-              Login
-            </Link>
-            <Link className="btn btn-primary mx-2" to={`/signup`} role="button">
-              Signup
-            </Link>
-            </div>
-            :
-            <button className="btn btn-primary mx-2" onClick={handleLogout}>Logout</button>
-}
+            {!localStorage.getItem("token") ? (
+              <div>
+                <Link
+                  className="btn btn-primary mx-2"
+                  to={`/login`}
+                  role="button">
+                  Login
+                </Link>
+                <Link
+                  className="btn btn-primary mx-2"
+                  to={`/signup`}
+                  role="button">
+                  Signup
+                </Link>
+              </div>
+            ) : (
+              <button className="btn btn-primary mx-2" onClick={handleLogout}>
+                Logout
+              </button>
+            )}
           </div>
         </div>
       </div>

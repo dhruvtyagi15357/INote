@@ -21,7 +21,7 @@ const About = () => {
             className="accordion-collapse collapse show"
             data-bs-parent="#accordionExample">
             <div className="accordion-body ">
-              <strong>INote | Your notebook on the cloud</strong> is a note taking application made with MERN stack that can be 
+              <strong>NoteKeeper | Your notebook on the cloud</strong> is a note taking application made with MERN stack that can be 
               used to take notes that can be made available to all your devices having an internet connection. This application
               uses a lot of technologies like: MongoDB, ExpressJS, ReactJS and ofcourse NodeJS.
               <br/>
