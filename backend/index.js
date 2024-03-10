@@ -23,5 +23,5 @@ app.use('/api/notes', require('./routes/notes'))
 
 
 app.listen(port, () => {
-  console.log(`Inote listening on port ${port}`)
+  console.log(`NoteKeeper listening on port ${port}`)
 })
