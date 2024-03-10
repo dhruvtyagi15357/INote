@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
   let navigate = useNavigate();
-  const host = "http://localhost:5000";
+  const host = import.meta.env.VITE_MONGODB + ":" + import.meta.env.VITE_PORT;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

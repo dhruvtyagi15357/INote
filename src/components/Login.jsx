@@ -2,7 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-  const host = "http://localhost:5000"
+  
+  // get the host from the env file
+
+  const host = import.meta.env.VITE_MONGODB + ":" + import.meta.env.VITE_PORT;
+  // const host = "http://localhost:5000";
   
   let navigate = useNavigate()
   const handleSubmit = async (e) => {

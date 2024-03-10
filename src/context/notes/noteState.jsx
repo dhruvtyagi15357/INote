@@ -3,7 +3,7 @@ import noteContext from "./notecontext";
 
 const NoteState = (props) => {
   // host
-  const host = "http://localhost:5000";
+  const host = import.meta.env.VITE_MONGODB + ":" + import.meta.env.VITE_PORT;
   const [notes, setNotes] = useState([]);
 
   //Get all notes
