@@ -1,5 +1,5 @@
 import { useState } from "react";
-import noteContext from "./notecontext";
+import noteContext from "./notecontext.jsx";
 
 const NoteState = (props) => {
   // host
