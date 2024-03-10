@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./components/About.jsx";
 import Home from "./components/Home.jsx";
 import Navbar from "./components/Navbar.jsx";
-import NoteState from "./context/notes/notestate.jsx";
+import NoteState from "./context/notes/noteState.jsx";
 import "./App.css";
 import Alert from "./components/Alert.jsx";
 import Login from "./components/Login.jsx";
