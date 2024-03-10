@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import About from "./components/About";
-import Home from "./components/Home";
-import Navbar from "./components/Navbar";
-import NoteState from "./context/notes/notestate";
+import About from "./components/About.jsx";
+import Home from "./components/Home.jsx";
+import Navbar from "./components/Navbar.jsx";
+import NoteState from "./context/notes/noteState.jsx";
 import "./App.css";
-import Alert from "./components/Alert";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
+import Alert from "./components/Alert.jsx";
+import Login from "./components/Login.jsx";
+import Signup from "./components/Signup.jsx";
 
 
 function App() {
